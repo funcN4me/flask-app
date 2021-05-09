@@ -1,11 +1,13 @@
 from app import db
 from datetime import datetime
+
+from slugify import slugify
 import re
 
 
-def slugify(s):
-    pattern = r'[^\w+]'
-    return re.sub(pattern, '-', s).replace('_', '-')
+# def slugify(s):
+#     pattern = r'[^\w+]'
+#     return re.sub(pattern, '-', s).replace('_', '-')
 
 
 post_tags = db.Table('post_tags',

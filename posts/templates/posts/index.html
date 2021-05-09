@@ -18,7 +18,7 @@
         </tr>
         </thead>
         <tbody>
-        {% for post in posts %}
+        {% for post in pages.items %}
             <tr>
                 <th scope="row">{{ post.id }}</th>
                 <td>
@@ -32,4 +32,28 @@
         {% endfor %}
         </tbody>
     </table>
+
+    <nav>
+        <ul class="pagination">
+            <li {% if not pages.has_prev %} class="page-item disabled" {% endif %}>
+                <a class="page-link" href="./?page={{ pages.prev_num }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+
+            {% for page in pages.iter_pages() %}
+                <li {% if page == pages.page %} class="page-item active" {% endif %}><a class="page-link" href="./?page={{ page }}">{{ page }}</a></li>
+            {% endfor %}
+
+            <li {% if not pages.has_next %} class="page-item disabled" {% endif %}>
+                <a class="page-link" href="./?page={{ pages.next_num }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container" style="text-align: center; margin-top: calc(5%)">
+        <a class="btn btn-success btn-lg" href="{{ url_for('posts.create_post') }}">Create post</a>
+    </div>
 {% endblock %}
