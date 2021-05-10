@@ -14,4 +14,9 @@
         {% endfor %}
     </div>
     {{ post.body }}
+
+    <div class="container" style="text-align: center; margin-top: calc(7%)">
+        <a type="button" class="btn btn-success" href="{{ url_for('posts.index') }}">Go back</a>
+        <a type="button" class="btn btn-success" href="{{ url_for('posts.post_detail', slug=next_post.slug) }}">Go to next</a>
+    </div>
 {% endblock %}
